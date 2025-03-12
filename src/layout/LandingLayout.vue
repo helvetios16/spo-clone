@@ -6,12 +6,12 @@ import AsideMenu from '@/components/AsideMenu.vue';
   <body>
     <div id="app" class="relative h-screen p-2 gap-2 w-screen bg-theme-black-primary">
       <aside
-        class="[grid-area:aside] flex-col flex overflow-y-auto bg-theme-black-secondary rounded-md p-2"
+        class="[grid-area:aside] flex-col flex overflow-y-auto bg-theme-black-primary rounded-lg p-2"
       >
         <AsideMenu />
+        <main class="[grid-area:main] bg-theme-black-secondary rounded-lg"><RouterView /></main>
       </aside>
-      <main class="[grid-area:main] bg-theme-black-secondary rounded-md"><RouterView /></main>
-      <footer class="[grid-area:player] flex flex-col bg-theme-black-secondary rounded-md">
+      <footer class="[grid-area:player] min-h-[100px] bg-theme-black-secondary rounded-lg">
         Footer
       </footer>
     </div>
@@ -27,4 +27,9 @@ import AsideMenu from '@/components/AsideMenu.vue';
   overflow: hidden;
   color: white;
 }
+html {
+  background-color: var(--theme-black-primary);
+}
 </style>
+
+// agregar fuentes, data de musica, colores y musica mp3 y fuente woff2
