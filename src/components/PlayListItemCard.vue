@@ -1,16 +1,16 @@
 <template>
   <RouterLink
     to="/"
-    class="playlist-item flex relative p-2 overflow-hidden items-center gap-3 rounded-md hover:bg-zinc-500"
+    class="playlist-item transition-all duration-300 flex relative p-2 overflow-hidden gap-2 pb-6 rounded-md hover:bg-theme-gray-primary shadow-lg hover:shadow-xl bg-zinc-500/30a w-44 flex-col"
   >
-    <picture class="h-12 w-12 flex-none">
+    <picture class="aspect-square w-full h-auto flex-none">
       <img
         :src="cover"
         :alt="`Cover of ${title} by ${artistString}`"
         class="object-cover w-full h-full rounded-md"
       />
     </picture>
-    <div class="flex flex-auto flex-col truncate">
+    <div class="flex flex-auto flex-col px-2">
       <h4 class="text-sm text-white">
         {{ title }}
       </h4>
@@ -20,6 +20,7 @@
     </div>
   </RouterLink>
 </template>
+
 <script setup lang="ts">
 import { type Playlist } from '@/lib/data';
 
