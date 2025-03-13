@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import AsideMenu from '@/components/AsideMenu.vue';
+import PlayerMusic from '@/components/PlayerMusic.vue';
 </script>
 
 <template>
@@ -14,7 +15,7 @@ import AsideMenu from '@/components/AsideMenu.vue';
         <RouterView />
       </main>
       <footer class="[grid-area:player] min-h-[100px] bg-theme-black-primary rounded-lg">
-        Footer
+        <PlayerMusic />
       </footer>
     </div>
   </body>
@@ -40,7 +41,7 @@ html {
 
 @font-face {
   font-family: 'CircularStd';
-  src: url('/public/fonts/CircularStd-Medium.woff2') format('woff2');
+  src: url('/fonts/CircularStd-Medium.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -48,7 +49,7 @@ html {
 
 @font-face {
   font-family: 'CircularStd';
-  src: url('/public/fonts/CircularStd-Book.woff2') format('woff2');
+  src: url('/fonts/CircularStd-Book.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -56,7 +57,7 @@ html {
 
 @font-face {
   font-family: 'CircularStd';
-  src: url('/public/fonts/CircularStd-Light.woff2') format('woff2');
+  src: url('/fonts/CircularStd-Light.woff2') format('woff2');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -64,7 +65,7 @@ html {
 
 @font-face {
   font-family: 'CircularStd';
-  src: url('/public/fonts/CircularStd-Bold.woff2') format('woff2');
+  src: url('fonts/CircularStd-Bold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -72,11 +73,9 @@ html {
 
 @font-face {
   font-family: 'CircularStd';
-  src: url('/public/fonts/CircularStd-Black.woff2') format('woff2');
+  src: url('/fonts/CircularStd-Black.woff2') format('woff2');
   font-weight: 900;
   font-style: normal;
   font-display: swap;
 }
 </style>
-
-// musica mp3
