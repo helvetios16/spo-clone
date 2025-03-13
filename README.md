@@ -20,6 +20,12 @@ See [Vite Configuration Reference](https://vite.dev/config/).
 bun install
 ```
 
+## Symbolic link to music
+
+```sh
+ln -s /path/to/your/music public/music
+```
+
 ### Compile and Hot-Reload for Development
 
 ```sh

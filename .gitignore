@@ -28,3 +28,7 @@ coverage
 *.sw?
 
 *.tsbuildinfo
+
+// Symbolic links
+/public/music/*
+public/music
