@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import GreetingDay from '@/components/GreetingDay.vue';
 import PlayListItemCard from '@/components/PlayListItemCard.vue';
 import { playlists } from '@/lib/data';
 </script>
@@ -6,7 +7,7 @@ import { playlists } from '@/lib/data';
 <template>
   <div id="playlist-container" class="relative transition-all duration-100 bg-theme-green">
     <div class="relative z-10 px-6 pt-10">
-      <h1 class="text-3xl font-bold text-white">Good morning</h1>
+      <GreetingDay />
       <div class="flex flex-wrap mt-6 gap-4">
         <PlayListItemCard v-for="playlist in playlists" :playlist="playlist" :key="playlist.id" />
       </div>
