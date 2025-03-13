@@ -1,6 +1,6 @@
 <template>
   <RouterLink
-    to="/"
+    :to="`/playlist/${id}`"
     class="playlist-item flex relative p-2 overflow-hidden items-center gap-3 rounded-md hover:bg-zinc-500"
   >
     <picture class="h-12 w-12 flex-none">

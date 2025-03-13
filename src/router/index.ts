@@ -14,6 +14,12 @@ export const router = createRouter({
           name: 'home',
           component: HomeView,
         },
+        {
+          path: '/playlist/:id',
+          name: 'playlist',
+          component: () => import('@/views/PlaylistView.vue'),
+          props: true,
+        },
       ],
     },
   ],
