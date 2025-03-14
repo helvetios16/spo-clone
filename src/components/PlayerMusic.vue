@@ -4,7 +4,7 @@
     <div class="grid place-content-center gap-4 flex-1">
       <div class="flex justify-center">
         <button class="bg-white rounded-full p-2" @click="tooglePlay">
-          <component :is="play ? PauseIcon : PlayIcon"></component>
+          <component :is="player ? PauseIcon : PlayIcon"></component>
         </button>
       </div>
     </div>
@@ -15,21 +15,23 @@
 <script setup lang="ts">
 import PauseIcon from '@/assets/icons/PauseIcon.vue';
 import PlayIcon from '@/assets/icons/PlayIcon.vue';
-import { ref } from 'vue';
+import { usePlayerStore } from '@/stores/player';
+import { storeToRefs } from 'pinia';
 
-const play = ref(false);
+const playStore = usePlayerStore();
+const { player } = storeToRefs(playStore);
 const audio = new Audio();
 
 audio.src = '/music/1/01.mp3';
 
 const tooglePlay = () => {
-  if (play.value) {
+  if (player.value) {
     audio.pause();
   } else {
     audio.volume = 0.5;
     audio.play();
   }
-  play.value = !play.value;
+  playStore.setPlayer(!player.value);
 };
 
 // se puede desmontar para que cuando se vaya un lado pare la música pero no es necesario ya que

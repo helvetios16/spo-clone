@@ -27,7 +27,7 @@ const props = defineProps<{
   playlist: Playlist;
 }>();
 
-const { id, albumId, title, color, cover, artists } = props.playlist;
+const { id, title, cover, artists } = props.playlist;
 
 const artistString = artists.join(', ');
 </script>
