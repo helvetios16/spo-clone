@@ -2,8 +2,8 @@ import { defineStore } from 'pinia';
 import { reactive, ref } from 'vue';
 
 interface CurrentMusic {
-  playlist: string | null;
-  song: string | null;
+  playlist: { id: string } | null;
+  song: null;
   songs: [];
 }
 

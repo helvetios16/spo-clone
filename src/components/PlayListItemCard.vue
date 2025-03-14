@@ -1,13 +1,15 @@
 <template>
-  <article class="group relative">
+  <article
+    class="group relative rounded-md hover:bg-theme-black-secondary shadow-lg hover:shadow-xl bg-zinc-500/30 transition-all duration-300"
+  >
     <div
       class="absolute right-4 bottom-20 translate-y-4 transition-all duration-500 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 z-10"
     >
-      <CardPlayButton />
+      <CardPlayButton :id="id" />
     </div>
     <RouterLink
       :to="`/playlist/${id}`"
-      class="playlist-item transition-all duration-300 flex relative p-2 overflow-hidden gap-2 pb-6 rounded-md hover:bg-theme-gray-primary shadow-lg hover:shadow-xl bg-zinc-500/30a w-44 flex-col"
+      class="playlist-item transition-all duration-300 flex relative p-2 overflow-hidden gap-2 pb-6 w-44 flex-col"
     >
       <picture class="aspect-square w-full h-auto flex-none">
         <img
