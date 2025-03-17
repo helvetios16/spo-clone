@@ -1,10 +1,11 @@
+import type { Playlist, Song } from '@/lib/data';
 import { defineStore } from 'pinia';
 import { reactive, ref } from 'vue';
 
 interface CurrentMusic {
-  playlist: { id: string } | null;
-  song: null;
-  songs: [];
+  playlist: Playlist | null;
+  song: Song | null;
+  songs: Song[] | null;
 }
 
 export const usePlayerStore = defineStore('player', () => {

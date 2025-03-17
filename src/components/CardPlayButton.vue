@@ -5,6 +5,7 @@
 </template>
 
 <script setup lang="ts">
+import { get } from '@/api/get-info-playlist.json';
 import PauseIcon from '@/assets/icons/PauseIcon.vue';
 import PlayIcon from '@/assets/icons/PlayIcon.vue';
 import { usePlayerStore } from '@/stores/player';
@@ -18,15 +19,22 @@ const props = defineProps<{
 const playStore = usePlayerStore();
 const { player, currentMusic } = storeToRefs(playStore);
 
-const isPlayingPlaylist = ref();
+const isPlayingPlaylist = ref<boolean>(false);
 
-function handleClick() {
-  playStore.setCurrentMusic({
-    playlist: {
-      id: props.id,
-    },
-  });
-  playStore.setPlayer(!player.value);
+async function handleClick() {
+  if (isPlayingPlaylist.value) {
+    playStore.setPlayer(false);
+  } else {
+    const res = await get(props.id);
+    const { playlist, songs } = JSON.parse(res);
+
+    playStore.setCurrentMusic({
+      playlist: playlist,
+      songs: songs,
+      song: songs[0],
+    });
+    playStore.setPlayer(true);
+  }
   isPlayingPlaylist.value = player.value && currentMusic.value.playlist?.id === props.id;
 }
 </script>
