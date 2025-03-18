@@ -1,6 +1,12 @@
 <template>
   <div class="flex flex-row justify-between w-full px-4 z-50">
-    <div>Current song ...</div>
+    <div>
+      <CurrentSong
+        :image="currentMusic.song?.image || ''"
+        :title="currentMusic.song?.title || ''"
+        :artists="currentMusic.song?.artists || ['']"
+      />
+    </div>
     <div class="grid place-content-center gap-4 flex-1">
       <div class="flex justify-center">
         <button class="bg-white rounded-full p-2" @click="tooglePlay">
@@ -8,7 +14,9 @@
         </button>
       </div>
     </div>
-    <div>Volumen</div>
+    <div class="grid place-content-center">
+      <SliderPlayer @volumen="handleVolumen" />
+    </div>
   </div>
 </template>
 
@@ -18,9 +26,12 @@ import PlayIcon from '@/assets/icons/PlayIcon.vue';
 import { usePlayerStore } from '@/stores/player';
 import { storeToRefs } from 'pinia';
 import { ref, watch } from 'vue';
+import CurrentSong from './CurrentSong.vue';
+import SliderPlayer from './SliderPlayer.vue';
 
 const playStore = usePlayerStore();
 const { player, currentMusic } = storeToRefs(playStore);
+const currentVolumen = ref(1);
 const audio = ref(new Audio());
 audio.value.volume = 0.5;
 
@@ -59,6 +70,11 @@ const tooglePlay = () => {
   }
   playStore.setPlayer(!player.value);
 };
+
+function handleVolumen(newVolumen: number) {
+  currentVolumen.value = newVolumen;
+  console.log(currentVolumen.value);
+}
 
 // se puede desmontar para que cuando se vaya un lado pare la música pero no es necesario ya que
 // tiene que persistir en toda la aplicación

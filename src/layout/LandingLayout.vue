@@ -14,7 +14,7 @@ import PlayerMusic from '@/components/PlayerMusic.vue';
       <main class="[grid-area:main] bg-theme-black-secondary rounded-lg overflow-y-auto">
         <RouterView />
       </main>
-      <footer class="[grid-area:player] min-h-[100px] bg-theme-black-primary rounded-lg">
+      <footer class="[grid-area:player] bg-theme-black-primary rounded-lg">
         <PlayerMusic />
       </footer>
     </div>
