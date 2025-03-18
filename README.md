@@ -21,7 +21,7 @@ bun install
 ```
 
 ## Symbolic link to music
-
+Ask for music
 ```sh
 ln -s /path/to/your/music public/music
 ```
