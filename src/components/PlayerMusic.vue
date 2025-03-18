@@ -17,19 +17,45 @@ import PauseIcon from '@/assets/icons/PauseIcon.vue';
 import PlayIcon from '@/assets/icons/PlayIcon.vue';
 import { usePlayerStore } from '@/stores/player';
 import { storeToRefs } from 'pinia';
+import { ref, watch } from 'vue';
 
 const playStore = usePlayerStore();
-const { player } = storeToRefs(playStore);
-const audio = new Audio();
+const { player, currentMusic } = storeToRefs(playStore);
+const audio = ref(new Audio());
+audio.value.volume = 0.5;
 
-audio.src = '/music/1/01.mp3';
+watch(player, (newValue) => {
+  if (newValue) {
+    audio.value.play().catch((error) => {
+      console.error(error);
+    });
+  } else {
+    audio.value.pause();
+  }
+});
+
+watch(
+  currentMusic,
+  (newValue) => {
+    const { song, playlist } = newValue;
+    if (song) {
+      const src = `/music/${playlist?.id}/0${song.id}.mp3`;
+      console.log(src);
+      audio.value.src = src;
+      audio.value.load();
+      audio.value.addEventListener('loadeddata', () => {
+        audio.value.play();
+      });
+    }
+  },
+  { deep: true },
+);
 
 const tooglePlay = () => {
   if (player.value) {
-    audio.pause();
+    audio.value.pause();
   } else {
-    audio.volume = 0.5;
-    audio.play();
+    audio.value.play();
   }
   playStore.setPlayer(!player.value);
 };
