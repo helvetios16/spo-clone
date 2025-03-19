@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="grid place-content-center">
-      <SliderPlayer @volumen="handleVolumen" />
+      <PlayerVolumeControl @volumen="handleVolumen" />
     </div>
   </div>
 </template>
@@ -27,13 +27,11 @@ import { usePlayerStore } from '@/stores/player';
 import { storeToRefs } from 'pinia';
 import { ref, watch } from 'vue';
 import CurrentSong from './CurrentSong.vue';
-import SliderPlayer from './SliderPlayer.vue';
+import PlayerVolumeControl from './PlayerVolumeControl.vue';
 
 const playStore = usePlayerStore();
 const { player, currentMusic } = storeToRefs(playStore);
-const currentVolumen = ref(1);
 const audio = ref(new Audio());
-audio.value.volume = 0.5;
 
 watch(player, (newValue) => {
   if (newValue) {
@@ -72,8 +70,7 @@ const tooglePlay = () => {
 };
 
 function handleVolumen(newVolumen: number) {
-  currentVolumen.value = newVolumen;
-  console.log(currentVolumen.value);
+  audio.value.volume = newVolumen;
 }
 
 // se puede desmontar para que cuando se vaya un lado pare la música pero no es necesario ya que
