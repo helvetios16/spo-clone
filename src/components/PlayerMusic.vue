@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-row justify-between w-full px-4 z-50">
-    <div>
+    <div class="w-[200px]">
       <CurrentSong
         :image="currentMusic.song?.image || ''"
         :title="currentMusic.song?.title || ''"
@@ -8,10 +8,11 @@
       />
     </div>
     <div class="grid place-content-center gap-4 flex-1">
-      <div class="flex justify-center">
+      <div class="flex justify-center flex-col items-center">
         <button class="bg-white rounded-full p-2" @click="tooglePlay">
           <component :is="player ? PauseIcon : PlayIcon"></component>
         </button>
+        <PlayerSongCrontrol :audio="audio" @seek="handleSeek" />
       </div>
     </div>
     <div class="grid place-content-center">
@@ -28,6 +29,7 @@ import { storeToRefs } from 'pinia';
 import { ref, watch } from 'vue';
 import CurrentSong from './CurrentSong.vue';
 import PlayerVolumeControl from './PlayerVolumeControl.vue';
+import PlayerSongCrontrol from './PlayerSongCrontrol.vue';
 
 const playStore = usePlayerStore();
 const { player, currentMusic } = storeToRefs(playStore);
@@ -71,6 +73,10 @@ const tooglePlay = () => {
 
 function handleVolumen(newVolumen: number) {
   audio.value.volume = newVolumen;
+}
+
+function handleSeek(newTime: number) {
+  audio.value.currentTime = newTime;
 }
 
 // se puede desmontar para que cuando se vaya un lado pare la música pero no es necesario ya que
