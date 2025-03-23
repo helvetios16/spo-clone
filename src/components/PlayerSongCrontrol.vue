@@ -5,7 +5,7 @@
       v-model="currentTime"
       :min="0"
       :max="maxTime"
-      class="w-[500px]"
+      class="w-[450px]"
       @update:model-value="handldSeek"
     />
     <span class="opacity-50 w-12">{{ formatTime(maxTime) }}</span>

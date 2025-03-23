@@ -10,7 +10,7 @@ import PauseIcon from '@/assets/icons/PauseIcon.vue';
 import PlayIcon from '@/assets/icons/PlayIcon.vue';
 import { usePlayerStore } from '@/stores/player';
 import { storeToRefs } from 'pinia';
-import { nextTick, ref } from 'vue';
+import { nextTick, ref, watch } from 'vue';
 
 const props = defineProps<{
   id: string;
@@ -32,6 +32,11 @@ async function handleClick() {
       throw new Error('Invalid playlist data');
     }
 
+    if (currentMusic.value.playlist?.id === props.id) {
+      playStore.setPlayer(true);
+      return;
+    }
+
     playStore.setCurrentMusic({
       playlist: playlist,
       songs: songs,
@@ -43,4 +48,8 @@ async function handleClick() {
   await nextTick();
   isPlayingPlaylist.value = player.value && currentMusic.value.playlist?.id === props.id;
 }
+
+watch(player, (newValue) => {
+  isPlayingPlaylist.value = newValue && currentMusic.value.playlist?.id === props.id;
+});
 </script>

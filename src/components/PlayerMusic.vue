@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row justify-between w-full px-4 z-50">
+  <div class="flex flex-row justify-between w-full px-2 z-50">
     <div class="w-[200px]">
       <CurrentSong
         :image="currentMusic.song?.image || ''"
@@ -15,7 +15,7 @@
         <PlayerSongCrontrol :audio="audio" @seek="handleSeek" />
       </div>
     </div>
-    <div class="grid place-content-center">
+    <div class="grid place-content-end place-self-center w-[200px]">
       <PlayerVolumeControl @volumen="handleVolumen" />
     </div>
   </div>
